@@ -28,11 +28,6 @@ Getting Started
 The easiest way to install SciencePlots is by using `pip`:
 
 ```bash
-# to install the latest release (from PyPI)
-pip install SciencePlots
-
-# to install the latest release (using Conda)
-conda install -c conda-forge scienceplots
 
 # to install the latest commit (from GitHub)
 pip install git+https://github.com/nwpulverizer/SciencePlots-plotly
