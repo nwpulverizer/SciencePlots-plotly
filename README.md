@@ -42,10 +42,10 @@ Science Plots
 This repo provides Plotly templates to format figures for scientific papers, presentations, and theses.
 
 <p align="center">
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig01a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig01a.jpg" width="500">
 </p>
 
-You can find [the full gallery of included templates here](https://github.com/garrettj403/SciencePlots/wiki/Gallery).
+You can find [the full gallery of included templates here](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery).
 
 Getting Started
 ---------------
@@ -74,7 +74,7 @@ Import `scienceplots` once in your script so templates are registered in Plotly.
 - Plotly uses MathJax for math text (`$...$`), so a local LaTeX toolchain is not required.
 - If you would like to use CJK fonts, install those fonts on your system for local export rendering.
 
-Please see the [FAQ](https://github.com/garrettj403/SciencePlots/wiki/FAQ) for more information and troubleshooting.
+Please see the [FAQ](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/FAQ) for more information and troubleshooting.
 
 Using the Templates
 ----------------
@@ -110,26 +110,26 @@ Examples
 
 The basic ``science`` template is shown below:
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig01a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig01a.jpg" width="500">
 
 It can be cascaded with other templates to fine-tune appearance. For example, the ``science`` + ``notebook`` templates (intended for Jupyter notebooks):
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig10.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig10.jpg" width="500">
 
-Please see [the project Wiki](https://github.com/garrettj403/SciencePlots/wiki/Gallery) for a full list of available templates.
+Please see [the project Wiki](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery) for a full list of available templates.
 
 Specific Templates for Academic Journals
 -------------------------------------
 
 The ``science`` + ``ieee`` templates for IEEE papers:
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig02a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig02a.jpg" width="500">
 
    - IEEE requires figures to be readable when printed in black and white. The ``ieee`` style also sets the figure width to fit within one column of an IEEE paper.
 
 The ``science`` + ``nature`` templates for Nature articles:
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig02c.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig02c.jpg" width="500">
 
    - Nature recommends sans-serif fonts.
 
@@ -137,49 +137,49 @@ Other languages
 ---------------
 
 SciencePlots currently supports:
- * [Traditional Chinese](https://github.com/garrettj403/SciencePlots/wiki/Gallery#traditional-chinese)
- * [Simplified Chinese](https://github.com/garrettj403/SciencePlots/wiki/Gallery#simplified-chinese)
- * [Japanese](https://github.com/garrettj403/SciencePlots/wiki/Gallery#japanese)
- * [Korean](https://github.com/garrettj403/SciencePlots/wiki/Gallery#korean)
- * [Russian](https://github.com/garrettj403/SciencePlots/wiki/Gallery#russian)
- * [Turkish](https://github.com/garrettj403/SciencePlots/wiki/Gallery#turkish)
+ * [Traditional Chinese](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#traditional-chinese)
+ * [Simplified Chinese](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#simplified-chinese)
+ * [Japanese](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#japanese)
+ * [Korean](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#korean)
+ * [Russian](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#russian)
+ * [Turkish](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#turkish)
 
 Example: Traditional Chinese (`science` + `no-latex` + `cjk-tc-font`):
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig14a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig14a.jpg" width="500">
 
-See the [FAQ](https://github.com/garrettj403/SciencePlots/wiki/FAQ#installing-cjk-fonts) for information on installing CJK fonts.
+See the [FAQ](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/FAQ#installing-cjk-fonts) for information on installing CJK fonts.
 
 Other color cycles
 ------------------
 
-SciencePlots comes with a variety of different color cycles. For a full list, [see the project Wiki](https://github.com/garrettj403/SciencePlots/wiki/Gallery#color-cycles). Two examples are shown below.
+SciencePlots comes with a variety of different color cycles. For a full list, [see the project Wiki](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/Gallery#color-cycles). Two examples are shown below.
 
 The ``bright`` color cycle (color blind safe):
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig06.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig06.jpg" width="500">
 
 The ``high-vis`` color cycle:
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig04.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig04.jpg" width="500">
 
 Paul Tol's discrete rainbow color sets are available as well, with the template identifier ``discrete-rainbow-<n>``, where ``<n>`` is the number of unique colors. ``<n>`` ranges from ``1`` to ``23`` (inclusive). For example, ``discrete-rainbow-15``:
 
-<img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig_dr_15.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig_dr_15.jpg" width="500">
 
 Help and Contributing
 ---------------------
 
-Please feel free to contribute to the SciencePlots repo! For example, it would be good to add new styles for different journals and add new color cycles. Before starting a new style or making any changes, please create an issue through the [GitHub issue tracker](https://github.com/garrettj403/SciencePlots/issues). That way we can discuss if the changes are necessary and the best approach.
+Please feel free to contribute to the SciencePlots repo! For example, it would be good to add new styles for different journals and add new color cycles. Before starting a new style or making any changes, please create an issue through the [GitHub issue tracker](https://github.com/nwpulverizer/SciencePlots-plotly/issues). That way we can discuss if the changes are necessary and the best approach.
 
-If you need any help with SciencePlots, please first check the [FAQ](https://github.com/garrettj403/SciencePlots/wiki/FAQ) and search through the [previous GitHub issues](https://github.com/garrettj403/SciencePlots/issues). If you can't find an answer, create a new issue through the [GitHub issue tracker](https://github.com/garrettj403/SciencePlots/issues).
+If you need any help with SciencePlots, please first check the [FAQ](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/FAQ) and search through the [previous GitHub issues](https://github.com/nwpulverizer/SciencePlots-plotly/issues). If you can't find an answer, create a new issue through the [GitHub issue tracker](https://github.com/nwpulverizer/SciencePlots-plotly/issues).
 
 You can check [Plotly's template documentation](https://plotly.com/python/templates/) for more information on plotting settings.
 
 FAQ
 ---
 
-You can find [the FAQ in the project Wiki.](https://github.com/garrettj403/SciencePlots/wiki/FAQ)
+You can find [the FAQ in the project Wiki.](https://github.com/nwpulverizer/SciencePlots-plotly/wiki/FAQ)
 
 SciencePlots in Academic Papers
 -------------------------------
