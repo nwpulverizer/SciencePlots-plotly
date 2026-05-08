@@ -1,0 +1,52 @@
+{
+  "data": {
+    "scatter": [
+      {
+        "line": {
+          "width": 1.0
+        },
+        "marker": {
+          "size": 3.0
+        },
+        "type": "scatter"
+      }
+    ]
+  },
+  "layout": {
+    "font": {
+      "family": "sans-serif",
+      "size": 7.0
+    },
+    "height": 250,
+    "legend": {
+      "font": {
+        "size": 7.0
+      }
+    },
+    "width": 330,
+    "xaxis": {
+      "gridwidth": 0.5,
+      "linewidth": 0.5,
+      "tickfont": {
+        "size": 7.0
+      },
+      "title": {
+        "font": {
+          "size": 7.0
+        }
+      }
+    },
+    "yaxis": {
+      "gridwidth": 0.5,
+      "linewidth": 0.5,
+      "tickfont": {
+        "size": 7.0
+      },
+      "title": {
+        "font": {
+          "size": 7.0
+        }
+      }
+    }
+  }
+}

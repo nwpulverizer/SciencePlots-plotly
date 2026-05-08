@@ -6,17 +6,17 @@ build-backend = "setuptools.build_meta"
 name = "SciencePlots"
 authors = [{ name = "John Garrett", email = "garrettj403@gmail.com" }]
 maintainers = [{ name = "Echedey Luis", email = "echelual@gmail.com" }]
-description = "Format Matplotlib for scientific plotting"
+description = "Plotly templates for scientific figures"
 readme = { file = "README.md", content-type = "text/markdown" }
 license = "MIT"
 license-files = ["LICENSE"]
 
 keywords = [
-    "matplotlib-style-sheets",
-    "matplotlib-figures",
+    "plotly-templates",
+    "plotly-figures",
     "scientific-papers",
     "thesis-template",
-    "matplotlib-styles",
+    "plotly-styles",
     "python",
 ]
 classifiers = [
@@ -24,31 +24,30 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "Programming Language :: Python :: 3",
     "Topic :: Scientific/Engineering :: Visualization",
-    "Framework :: Matplotlib",
 ]
 
 dynamic = ["version"]
 
 requires-python = ">=3.8"
-dependencies = ["matplotlib"]
+dependencies = ["plotly"]
 
 [project.optional-dependencies]
 test = ["pytest", "numpy"]
 all = ["SciencePlots[test]"]
 
 [project.urls]
-Homepage = "https://github.com/garrettj403/SciencePlots/wiki"
-Documentation = "https://github.com/garrettj403/SciencePlots/wiki"
-Repository = "https://github.com/garrettj403/SciencePlots"
-Issues = "https://github.com/garrettj403/SciencePlots/issues"
-Changelog = "https://github.com/garrettj403/SciencePlots/blob/master/CHANGES.md"
+Homepage = "https://github.com/nwpulverizer/SciencePlots-plotly"
+Documentation = "https://github.com/nwpulverizer/SciencePlots-plotly#readme"
+Repository = "https://github.com/nwpulverizer/SciencePlots-plotly"
+Issues = "https://github.com/nwpulverizer/SciencePlots-plotly/issues"
+Changelog = "https://github.com/nwpulverizer/SciencePlots-plotly/blob/master/CHANGES.md"
 
 [tool.setuptools_scm]
 # blank section to avoid warning
 
 [tool.pytest.ini_options]
 addopts = "-ra"
-testpaths = ["scienceplots/tests"]
+testpaths = ["src/scienceplots/tests"]
 
 [tool.ruff]
 # Same as Black.

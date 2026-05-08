@@ -1,0 +1,20 @@
+{
+  "layout": {
+    "legend": {
+      "bgcolor": "rgba(255,255,255,1.0)",
+      "borderwidth": 1
+    },
+    "xaxis": {
+      "gridcolor": "rgba(0,0,0,0.5)",
+      "griddash": "dash",
+      "gridwidth": 0.5,
+      "showgrid": true
+    },
+    "yaxis": {
+      "gridcolor": "rgba(0,0,0,0.5)",
+      "griddash": "dash",
+      "gridwidth": 0.5,
+      "showgrid": true
+    }
+  }
+}

@@ -35,17 +35,17 @@ Science Plots
 </p>
 
 > **Warning**
-> : As of version 2.0.0, you need to add `import scienceplots` before setting the style (`plt.style.use('science')`).
+> Import `scienceplots` before using templates so they are registered in `plotly.io.templates`.
 
-*Matplotlib styles for scientific figures*
+*Plotly templates for scientific figures*
 
-This repo has Matplotlib styles to format your figures for scientific papers, presentations and theses.
+This repo provides Plotly templates to format figures for scientific papers, presentations, and theses.
 
 <p align="center">
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig01a.jpg" width="500">
 </p>
 
-You can find [the full gallery of included styles here](https://github.com/garrettj403/SciencePlots/wiki/Gallery).
+You can find [the full gallery of included templates here](https://github.com/garrettj403/SciencePlots/wiki/Gallery).
 
 Getting Started
 ---------------
@@ -60,74 +60,74 @@ pip install SciencePlots
 conda install -c conda-forge scienceplots
 
 # to install the latest commit (from GitHub)
-pip install git+https://github.com/garrettj403/SciencePlots
+pip install git+https://github.com/nwpulverizer/SciencePlots-plotly
 
 # to clone and install from a local copy
-git clone https://github.com/garrettj403/SciencePlots.git
-cd SciencePlots
+git clone https://github.com/nwpulverizer/SciencePlots-plotly.git
+cd SciencePlots-plotly
 pip install -e .
 ```
 
-From version `v1.1.0` on, `import scienceplots` is needed on top of your scripts so Matplotlib can make use of the styles.
+Import `scienceplots` once in your script so templates are registered in Plotly.
 
-**Notes:** 
-- SciencePlots requires Latex ([see Latex installation instructions](https://github.com/garrettj403/SciencePlots/wiki/FAQ#installing-latex)). 
-- If you would like to use CJK fonts, you will need to install these font separately ([see CJK font installation instructions](https://github.com/garrettj403/SciencePlots/wiki/FAQ#installing-cjk-fonts)).
+**Notes:**
+- Plotly uses MathJax for math text (`$...$`), so a local LaTeX toolchain is not required.
+- If you would like to use CJK fonts, install those fonts on your system for local export rendering.
 
 Please see the [FAQ](https://github.com/garrettj403/SciencePlots/wiki/FAQ) for more information and troubleshooting.
 
-Using the Styles
+Using the Templates
 ----------------
 
-``"science"`` is the primary style in this repo. Whenever you want to use it, simply add the following to the top of your python script:
+`"science"` is the primary template in this repo. Use it by registering templates via import and then applying it in Plotly:
 
 ```python
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
+import plotly.io as pio
 import scienceplots
 
-plt.style.use('science')
+pio.templates.default = "science"
+fig = go.Figure(data=[go.Scatter(x=[1, 2, 3], y=[2, 1, 3])])
+fig.show()
 ```
 
-You can also combine multiple styles together by:
+You can also combine templates:
 
 ```python
-plt.style.use(['science','ieee'])
+fig.update_layout(template="science+ieee")
 ```
 
-In this case, the ``ieee`` style will override some of the parameters from the ``science`` style in order to configure the plot for IEEE papers (column width, fontsizes, etc.).
+In this case, `ieee` overrides parameters from `science` for IEEE-style figures.
 
-To use any of the styles temporarily, you can use:
+You can also apply templates per figure:
 
 ```python
-with plt.style.context('science'):
-    plt.figure()
-    plt.plot(x, y)
-    plt.show()
+fig.update_layout(template="science")
 ```
 
 Examples
 --------
 
-The basic ``science`` style is shown below:
+The basic ``science`` template is shown below:
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig01a.jpg" width="500">
 
-It can be cascaded with other styles to fine-tune the appearance. For example, the ``science`` + ``notebook`` styles (intended for Jupyter notebooks):
+It can be cascaded with other templates to fine-tune appearance. For example, the ``science`` + ``notebook`` templates (intended for Jupyter notebooks):
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig10.jpg" width="500">
 
-Please see [the project Wiki](https://github.com/garrettj403/SciencePlots/wiki/Gallery) for a full list of available styles.
+Please see [the project Wiki](https://github.com/garrettj403/SciencePlots/wiki/Gallery) for a full list of available templates.
 
-Specific Styles for Academic Journals
+Specific Templates for Academic Journals
 -------------------------------------
 
-The ``science`` + ``ieee`` styles for IEEE papers:
+The ``science`` + ``ieee`` templates for IEEE papers:
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig02a.jpg" width="500">
 
    - IEEE requires figures to be readable when printed in black and white. The ``ieee`` style also sets the figure width to fit within one column of an IEEE paper.
 
-The ``science`` + ``nature`` styles for Nature articles:
+The ``science`` + ``nature`` templates for Nature articles:
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig02c.jpg" width="500">
 
@@ -163,7 +163,7 @@ The ``high-vis`` color cycle:
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig04.jpg" width="500">
 
-Paul Tol's discrete rainbow color sets are available as well, with the style identifier ``discrete-rainbow-<n>``, where ``<n>`` is the number of unique colors. ``<n>`` ranges from ``1`` to ``23`` (inclusive). For example, ``discrete-rainbow-15``:
+Paul Tol's discrete rainbow color sets are available as well, with the template identifier ``discrete-rainbow-<n>``, where ``<n>`` is the number of unique colors. ``<n>`` ranges from ``1`` to ``23`` (inclusive). For example, ``discrete-rainbow-15``:
 
 <img src="https://github.com/garrettj403/SciencePlots/raw/master/examples/figures/fig_dr_15.jpg" width="500">
 
@@ -174,7 +174,7 @@ Please feel free to contribute to the SciencePlots repo! For example, it would b
 
 If you need any help with SciencePlots, please first check the [FAQ](https://github.com/garrettj403/SciencePlots/wiki/FAQ) and search through the [previous GitHub issues](https://github.com/garrettj403/SciencePlots/issues). If you can't find an answer, create a new issue through the [GitHub issue tracker](https://github.com/garrettj403/SciencePlots/issues).
 
-You can checkout [Matplotlib's documentation](https://matplotlib.org/tutorials/introductory/customizing.html) for more information on plotting settings.
+You can check [Plotly's template documentation](https://plotly.com/python/templates/) for more information on plotting settings.
 
 FAQ
 ---
