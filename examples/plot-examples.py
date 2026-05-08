@@ -8,7 +8,12 @@ from pathlib import Path
 
 import numpy as np
 import plotly.graph_objects as go
+import plotly.io as pio
 import scienceplots  # noqa: F401
+
+# MathJax required for LaTeX rendering ($\mu$, etc.) in both HTML and PNG output.
+# write_html uses the string "cdn"; kaleido (PNG) expects True/None (uses default CDN URL).
+pio.defaults.mathjax = True
 
 
 ROOT_DIR = Path(__file__).resolve().parent
@@ -53,7 +58,11 @@ def create_line_figure(
 def save_outputs(figure: go.Figure, stem: str) -> None:
     """Save both an interactive HTML file and a static PNG for a figure."""
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    figure.write_html(OUTPUT_DIR / f"{stem}.html", include_plotlyjs="cdn")
+    figure.write_html(
+        OUTPUT_DIR / f"{stem}.html",
+        include_plotlyjs="cdn",
+        include_mathjax="cdn",
+    )
     figure.write_image(
         OUTPUT_DIR / f"{stem}.png",
         width=PNG_WIDTH,
@@ -74,7 +83,7 @@ def generate_core_examples() -> None:
         "fig14a": (
             "science",
             [5, 7, 10, 15, 20, 30, 38, 50, 100],
-            {"xlabel": "電壓 (mV)", "ylabel": "電流 (μA)"},
+            {"xlabel": "電壓 (mV)", "ylabel": r"電流 ($\mu$A)"},
             "science (Traditional Chinese)",
         ),
         "fig16": ("science+russian-font", [5, 7, 10, 15, 20, 30, 50], {}, "science+russian-font"),
