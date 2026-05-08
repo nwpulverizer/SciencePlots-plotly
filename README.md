@@ -1,3 +1,7 @@
+
+> [!WARNING]  
+> Work in progress. Not yet fully implemented. This is currently just the base repo of science plots
+
 Science Plots
 =============
 
