@@ -44,7 +44,7 @@ Science Plots
 This repo provides Plotly templates to format figures for scientific papers, presentations, and theses.
 
 <p align="center">
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig01a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig01a.png" width="500">
 </p>
 
 You can find generated examples in [`examples/figures`](./examples/figures) and use
@@ -114,11 +114,11 @@ Examples
 
 The basic ``science`` template is shown below:
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig01a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig01a.png" width="500">
 
 It can be cascaded with other templates to fine-tune appearance. For example, the ``science`` + ``notebook`` templates (intended for Jupyter notebooks):
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig10.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig10.png" width="500">
 
 Please see [`examples/plot-examples.py`](./examples/plot-examples.py) for template
 combinations used in the gallery examples.
@@ -128,13 +128,13 @@ Specific Templates for Academic Journals
 
 The ``science`` + ``ieee`` templates for IEEE papers:
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig02a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig02a.png" width="500">
 
    - IEEE requires figures to be readable when printed in black and white. The ``ieee`` style also sets the figure width to fit within one column of an IEEE paper.
 
 The ``science`` + ``nature`` templates for Nature articles:
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig02c.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig02c.png" width="500">
 
    - Nature recommends sans-serif fonts.
 
@@ -151,7 +151,7 @@ SciencePlots currently supports:
 
 Example: Traditional Chinese (`science` + `no-latex` + `cjk-tc-font`):
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig14a.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig14a.png" width="500">
 
 See [Getting Started](#getting-started) for CJK font notes.
 
@@ -164,15 +164,15 @@ Two examples are shown below.
 
 The ``bright`` color cycle (color blind safe):
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig06.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig06.png" width="500">
 
 The ``high-vis`` color cycle:
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig04.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig04.png" width="500">
 
 Paul Tol's discrete rainbow color sets are available as well, with the template identifier ``discrete-rainbow-<n>``, where ``<n>`` is the number of unique colors. ``<n>`` ranges from ``1`` to ``23`` (inclusive). For example, ``discrete-rainbow-15``:
 
-<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/fig_dr_15.jpg" width="500">
+<img src="https://github.com/nwpulverizer/SciencePlots-plotly/raw/master/examples/figures/plotly/fig_dr_15.png" width="500">
 
 Help and Contributing
 ---------------------
