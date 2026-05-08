@@ -1,0 +1,62 @@
+{
+  "data": {
+    "scatter": [
+      {
+        "line": {
+          "width": 2.0
+        },
+        "type": "scatter"
+      }
+    ]
+  },
+  "layout": {
+    "font": {
+      "family": "sans-serif"
+    },
+    "height": 600,
+    "legend": {
+      "font": {
+        "size": 16.0
+      },
+      "title": {
+        "font": {
+          "size": 16.0
+        }
+      }
+    },
+    "title": {
+      "font": {
+        "size": 16.0
+      }
+    },
+    "width": 800,
+    "xaxis": {
+      "gridwidth": 1.0,
+      "linewidth": 1.0,
+      "tickfont": {
+        "size": 16.0
+      },
+      "ticklen": 6.0,
+      "tickwidth": 1.0,
+      "title": {
+        "font": {
+          "size": 16.0
+        }
+      }
+    },
+    "yaxis": {
+      "gridwidth": 1.0,
+      "linewidth": 1.0,
+      "tickfont": {
+        "size": 16.0
+      },
+      "ticklen": 6.0,
+      "tickwidth": 1.0,
+      "title": {
+        "font": {
+          "size": 16.0
+        }
+      }
+    }
+  }
+}

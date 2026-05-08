@@ -1,18 +1,12 @@
-import os  # pathlib.Path.walk not available in Python <3.12
-import matplotlib.pyplot as plt
+from pathlib import Path
 
-import scienceplots
-from .styles_discovery import read_styles_in_folders
+import plotly.io as pio
 
-# register the bundled stylesheets in the matplotlib style library
-scienceplots_path = scienceplots.__path__[0]
-styles_path = os.path.join(scienceplots_path, "styles")
+from .templates_discovery import read_templates_in_folders
 
-# Reads styles in /styles folder and all subfolders
-stylesheets = read_styles_in_folders(styles_path)
+TEMPLATES_DIR_NAME = "templates"
 
-# Update dictionary of styles - plt.style.library
-plt.style.core.update_nested_dict(plt.style.library, stylesheets)
-# Update `plt.style.available`, copy-paste from:
-# https://github.com/matplotlib/matplotlib/blob/a170539a421623bb2967a45a24bb7926e2feb542/lib/matplotlib/style/core.py#L266  # noqa: E501
-plt.style.core.available[:] = sorted(plt.style.library.keys())
+templates_path = Path(__file__).resolve().parent / TEMPLATES_DIR_NAME
+templates = read_templates_in_folders(templates_path)
+for name, template in templates.items():
+    pio.templates[name] = template

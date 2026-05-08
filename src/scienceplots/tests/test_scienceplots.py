@@ -1,45 +1,30 @@
-"""Test suite of SciencePlots
-"""
+"""Test suite of SciencePlots."""
 
-import matplotlib.pyplot as plt
-
-
-def test_matplotlib_required_api_existence():
-    """Check if all functions and attributes used by scienceplots are available
-    in matplotlib.
-    """
-    assert hasattr(plt.style, "core")
-    assert hasattr(plt.style.core, "read_style_directory")
-    assert hasattr(plt.style.core, "update_nested_dict")
-    assert hasattr(plt.style, "available")
-    assert hasattr(plt.style, "library")
+import plotly.graph_objects as go
+import plotly.io as pio
 
 
-def test_styles_existence(styles_in_scienceplots_per_folder):
-    """Check all styles are available in matplotlib."""
-    for folder, styles in styles_in_scienceplots_per_folder.items():
-        assert len(styles) > 0, f"No styles found in {folder}."
-        for style in styles:
-            assert (  # both in list of names and the library they are retrieved from hello
-                style in plt.style.available and style in plt.style.library
-            ), f"'{style}' not in available styles. Style in folder {folder}."
+def test_plotly_required_api_existence():
+    """Check if all Plotly API pieces used by scienceplots are available."""
+    assert hasattr(pio, "templates")
+    assert hasattr(pio.templates, "default")
 
 
-def test_usage_of_each_style(
-    xy_example_values, styles_in_scienceplots_per_folder, tmp_path,
-):
-    """Tests if the styles are correctly formatted and can be applied to a plot."""
-    pparam = {"xlabel": "Voltage (mV)", "ylabel": r"Current ($\mu$A)"}
-    x, ys, p = xy_example_values
-    for folder, styles in styles_in_scienceplots_per_folder.items():
-        for style in styles:
-            output_file = tmp_path / f"test_{folder}_{style}.png"
-            with plt.style.context(style):
-                fig, ax = plt.subplots()
-                for y in ys:
-                    ax.plot(x, y)
-                ax.legend(p, title="Order")
-                ax.set(**pparam)
-                ax.autoscale(tight=True)
-                fig.savefig(output_file)
-                plt.close(fig)
+def test_templates_existence(templates_in_scienceplots_per_folder):
+    """Check all templates are available in plotly.io.templates."""
+    for folder, templates in templates_in_scienceplots_per_folder.items():
+        assert len(templates) > 0, f"No templates found in {folder}."
+        for template in templates:
+            assert template in pio.templates, (
+                f"'{template}' not in available templates. Template in folder {folder}."
+            )
+
+
+def test_usage_of_each_template(templates_in_scienceplots_per_folder):
+    """Test templates are valid and can be applied to a figure."""
+    for _, templates in templates_in_scienceplots_per_folder.items():
+        for template in templates:
+            fig = go.Figure(data=[go.Scatter(x=[0, 1], y=[0, 1], name="line")])
+            fig.update_layout(template=template, title="Template test")
+            serialized = fig.to_json()
+            assert serialized

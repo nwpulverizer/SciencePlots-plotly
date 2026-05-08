@@ -1,353 +1,114 @@
-"""Plot examples of SciencePlot styles."""
+"""Generate Plotly example figures for SciencePlots templates.
 
-# %%
+Outputs both interactive HTML files and static PNG images.
+PNG images are used in the README; HTML files provide interactive gallery versions.
+"""
+
+from pathlib import Path
+
 import numpy as np
-import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 import scienceplots  # noqa: F401
 
-import os
 
-# Check we are in examples dir
-current_dir = os.getcwd().lower()
-if current_dir.endswith("scienceplots"):
-    os.chdir("./examples")
-# Create 'figures' folder if it does not exist
-if not os.path.exists("./figures"):
-    os.makedirs("figures")
+ROOT_DIR = Path(__file__).resolve().parent
+OUTPUT_DIR = ROOT_DIR / "figures" / "plotly"
+X_VALUES = np.linspace(0.75, 1.25, 201)
+PNG_WIDTH = 900
+PNG_HEIGHT = 600
+PNG_SCALE = 2
 
 
-def model(x, p):
-    return x ** (2 * p + 1) / (1 + x ** (2 * p))
+def model(x_values: np.ndarray, p_value: float) -> np.ndarray:
+    """Toy model used in the original project examples."""
+    return x_values ** (2 * p_value + 1) / (1 + x_values ** (2 * p_value))
 
 
-pparam = dict(xlabel="Voltage (mV)", ylabel=r"Current ($\mu$A)")
-
-x = np.linspace(0.75, 1.25, 201)
-
-
-# %%
-# Style 'science'
-
-with plt.style.context(["science"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig01a.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'no-latex'
-with plt.style.context(["science", "no-latex"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig01b.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'ieee'
-with plt.style.context(["science", "ieee"]):
-    fig, ax = plt.subplots()
-    for p in [10, 20, 40, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig02a.jpg", dpi=300)
-    plt.close()
-
-
-# %%
-# Styles 'science', 'ieee', 'std-colors'
-with plt.style.context(["science", "ieee", "std-colors"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig02b.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'nature'
-with plt.style.context(["science", "nature"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig02c.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'scatter'
-with plt.style.context(["science", "scatter"]):
-    fig, ax = plt.subplots(figsize=(4, 4))
-    ax.plot([-2, 2], [-2, 2], "k--")
-    ax.fill_between(
-        [-2, 2], [-2.2, 1.8], [-1.8, 2.2], color="dodgerblue", alpha=0.2, lw=0
+def create_line_figure(
+    template: str,
+    p_values: list[float],
+    xlabel: str = "Voltage (mV)",
+    ylabel: str = r"Current ($\mu$A)",
+) -> go.Figure:
+    """Build one multi-line figure using a template expression."""
+    figure = go.Figure()
+    for p_value in p_values:
+        figure.add_trace(
+            go.Scatter(
+                x=X_VALUES,
+                y=model(X_VALUES, p_value),
+                mode="lines",
+                name=f"Order {p_value:g}",
+            )
+        )
+    figure.update_layout(
+        template=template,
+        xaxis_title=xlabel,
+        yaxis_title=ylabel,
+        legend_title="Order",
     )
-    for i in range(7):
-        x1 = np.random.normal(0, 0.5, 10)
-        y1 = x1 + np.random.normal(0, 0.2, 10)
-        ax.plot(x1, y1, label=r"$^\#${}".format(i + 1))
-    lgd = r"$\mathring{P}=\begin{cases}1&\text{if $\nu\geq0$}\\0&\text{if $\nu<0$}\end{cases}$"
-    ax.legend(title=lgd, loc=2, ncol=2)
-    xlbl = r"$\log_{10}\left(\frac{L_\mathrm{IR}}{\mathrm{L}_\odot}\right)$"
-    ylbl = r"$\log_{10}\left(\frac{L_\circledast}{\mathrm{L}_\odot}\right)$"
-    ax.set_xlabel(xlbl)
-    ax.set_ylabel(ylbl)
-    ax.set_xlim([-2, 2])
-    ax.set_ylim([-2, 2])
-    fig.savefig("figures/fig03.jpg", dpi=300)
-    plt.close()
+    return figure
 
-# %%
-# Styles 'science', 'high-vis'
-with plt.style.context(["science", "high-vis"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig04.jpg", dpi=300)
-    plt.close()
 
-# %%
-# Styles 'dark_background', 'science', 'high-vis'
-with plt.style.context(["dark_background", "science", "high-vis"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig05.jpg", dpi=300)
-    plt.close()
+def save_outputs(figure: go.Figure, stem: str) -> None:
+    """Save both an interactive HTML file and a static PNG for a figure."""
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    figure.write_html(OUTPUT_DIR / f"{stem}.html", include_plotlyjs="cdn")
+    figure.write_image(
+        OUTPUT_DIR / f"{stem}.png",
+        width=PNG_WIDTH,
+        height=PNG_HEIGHT,
+        scale=PNG_SCALE,
+    )
 
-# %%
-# Styles 'science', 'notebook'
-with plt.style.context(["science", "notebook"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig10.jpg", dpi=300)
-    plt.close()
 
-# %%
-# Plot different color cycles
+def generate_core_examples() -> None:
+    """Generate representative science template combinations."""
+    examples = {
+        "fig01a": ("science", [10, 15, 20, 30, 50, 100], {}, "science"),
+        "fig02a": ("science+ieee", [10, 20, 40, 100], {}, "science+ieee"),
+        "fig02c": ("science+nature", [10, 15, 20, 30, 50, 100], {}, "science+nature"),
+        "fig04": ("science+high-vis", [10, 15, 20, 30, 50, 100], {}, "science+high-vis"),
+        "fig06": ("science+bright", [5, 10, 15, 20, 30, 50, 100], {}, "science+bright"),
+        "fig10": ("science+notebook", [10, 15, 20, 30, 50, 100], {}, "science+notebook"),
+        "fig14a": (
+            "science",
+            [5, 7, 10, 15, 20, 30, 38, 50, 100],
+            {"xlabel": "電壓 (mV)", "ylabel": "電流 (μA)"},
+            "science (Traditional Chinese)",
+        ),
+        "fig16": ("science+russian-font", [5, 7, 10, 15, 20, 30, 50], {}, "science+russian-font"),
+        "fig17": ("science+turkish-font", [5, 7, 10, 15, 20, 30, 50], {}, "science+turkish-font"),
+    }
+    for stem, (template, p_values, extra, _title) in examples.items():
+        fig = create_line_figure(template, p_values, **extra)
+        save_outputs(fig, stem)
 
-# %%
-# Styles 'science', 'bright'
-with plt.style.context(["science", "bright"]):
-    fig, ax = plt.subplots()
-    for p in [5, 10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig06.jpg", dpi=300)
-    plt.close()
 
-# %%
-# Styles 'science', 'vibrant'
-with plt.style.context(["science", "vibrant"]):
-    fig, ax = plt.subplots()
-    for p in [5, 10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig07.jpg", dpi=300)
-    plt.close()
+def generate_discrete_rainbow_examples() -> None:
+    """Generate one file per discrete-rainbow template."""
+    p_values = np.logspace(0, 2, 23)
+    for count in range(1, 24):
+        template = f"science+discrete-rainbow-{count}"
+        figure = go.Figure()
+        for p_value in p_values[:count]:
+            figure.add_trace(
+                go.Scatter(
+                    x=X_VALUES,
+                    y=model(X_VALUES, p_value),
+                    mode="lines",
+                    showlegend=False,
+                )
+            )
+        figure.update_layout(
+            template=template,
+            xaxis_title="Voltage (mV)",
+            yaxis_title=r"Current ($\mu$A)",
+            title=f"discrete-rainbow-{count}",
+        )
+        save_outputs(figure, f"fig_dr_{count}")
 
-# %%
-# Styles 'science', 'muted'
-with plt.style.context(["science", "muted"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100, 500]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig08.jpg", dpi=300)
-    plt.close()
 
-# %%
-# Styles 'science', 'retro'
-with plt.style.context(["science", "retro"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig09.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'grid'
-with plt.style.context(["science", "grid"]):
-    fig, ax = plt.subplots()
-    for p in [10, 15, 20, 30, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig11.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'high-contrast'
-with plt.style.context(["science", "high-contrast"]):
-    fig, ax = plt.subplots()
-    for p in [10, 20, 50]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order")
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig12.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'light'
-with plt.style.context(["science", "light"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.autoscale(tight=True)
-    ax.set(**pparam)
-    fig.savefig("figures/fig13.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles for CJK languages
-# Note: You need to install the Noto Serif CJK Fonts before running
-# examples 14 and 15. See FAQ in README.
-
-# %%
-# Styles 'science', 'no-latex', 'cjk-*-font'
-with plt.style.context(["science", "no-latex", "cjk-tc-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.set(xlabel=r"電壓 (mV)")
-    ax.set(ylabel=r"電流 ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig14a.jpg", dpi=300)
-    plt.close()
-
-with plt.style.context(["science", "no-latex", "cjk-sc-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.set(xlabel=r"电压 (mV)")
-    ax.set(ylabel=r"电流 ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig14b.jpg", dpi=300)
-    plt.close()
-
-with plt.style.context(["science", "no-latex", "cjk-jp-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.set(xlabel=r"電圧 (mV)")
-    ax.set(ylabel=r"電気 ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig14c.jpg", dpi=300)
-    plt.close()
-
-with plt.style.context(["science", "no-latex", "cjk-kr-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title="Order", fontsize=7)
-    ax.set(xlabel=r"전압 (mV)")
-    ax.set(ylabel=r"전류 ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig14d.jpg", dpi=300)
-    plt.close()
-
-# import matplotlib
-# matplotlib.use('pgf')  # stwich backend to pgf
-# matplotlib.rcParams.update({
-#     "pgf.preamble": [
-#         "\\usepackage{fontspec}",
-#         '\\usepackage{xeCJK}',
-#         r'\setmainfont{Times New Roman}',  # EN fonts Romans
-#         r'\setCJKmainfont{SimHei}',  # set CJK fonts as SimSun
-#         r'\setCJKsansfont{SimHei}',
-#         r'\newCJKfontfamily{\Song}{SimSun}',
-#         ]
-# })
-
-# with plt.style.context(['science', 'cjk-tc-font']):
-#     fig, ax = plt.subplots()
-#     for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-#         ax.plot(x, model(x, p), label=p)
-#     ax.legend(title='Order', fontsize=7)
-#     ax.set(xlabel=r'電壓 (mV)')
-#     ax.set(ylabel=r'電流 ($\mu$A)')
-#     ax.autoscale(tight=True)
-#     fig.savefig('figures/fig15.pdf', backend='pgf')
-#     plt.close()
-
-# %%
-# Styles 'science', 'russian-font'
-with plt.style.context(["science", "russian-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title=r"Число", fontsize=7)
-    ax.set(xlabel=r"Напряжение (mV)")
-    ax.set(ylabel=r"Сила тока ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig16.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'turkish-font'
-with plt.style.context(["science", "turkish-font"]):
-    fig, ax = plt.subplots()
-    for p in [5, 7, 10, 15, 20, 30, 38, 50, 100]:
-        ax.plot(x, model(x, p), label=p)
-    ax.legend(title=r"Düzen", fontsize=7)
-    ax.set(xlabel=r"Gerilim/Volt (mV)")
-    ax.set(ylabel=r"Mevcut Güç/Akım ($\mu$A)")
-    ax.autoscale(tight=True)
-    fig.savefig("figures/fig17.jpg", dpi=300)
-    plt.close()
-
-# %%
-# Styles 'science', 'no-latex', 'discrete-rainbow-*'
-# Plot all discrete-rainbow styles
-p_list = np.logspace(0, 2, 23)
-for index in range(1, 23 + 1):
-    style_name = f"discrete-rainbow-{index}"
-    figure_name = f"fig_dr_{index}.jpg"
-    with plt.style.context(["science", "no-latex", style_name]):
-        fig, ax = plt.subplots()
-        for p in p_list[: index]:
-            ax.plot(x, model(x, p))
-        ax.autoscale(tight=True)
-        ax.set(**pparam)
-        fig.savefig(f"figures/{figure_name}", dpi=300)
-        plt.close()
-
-# %%
+if __name__ == "__main__":
+    generate_core_examples()
+    generate_discrete_rainbow_examples()
