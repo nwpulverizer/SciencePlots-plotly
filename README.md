@@ -1,6 +1,6 @@
 
 > [!WARNING]  
-> Work in progress. Not yet fully implemented. This is currently just the base repo of science plots
+> Work in progress. Not yet fully tested. 
 >
 > This repository is a Plotly-focused fork of the original SciencePlots project.
 
